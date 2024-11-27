@@ -21,8 +21,8 @@ export default async function SuccessPage() {
               Onboarding proccess Complete!
             </h1>
             <p className="text-lg text-gray-600 max-w-md mx-auto">
-              Your transformation has been successfully created. You're all set
-              to start your journey.
+              Your transformation has been successfully created. You&apos;re all
+              set to start your journey.
             </p>
           </div>
           <PreferencesCard summary={parsedSummary} />

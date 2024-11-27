@@ -12,6 +12,7 @@ export function getHeaders() {
   return headers;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function extractData(inputArray: any[]): Summary {
   return inputArray.reduce((result, item) => {
     return { ...result, ...item };

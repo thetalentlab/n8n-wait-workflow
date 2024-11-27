@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCurrentExecution } from "@/actions/execution";
 import { RESUME_URL } from "@/lib/constants";
 import { getCookie, setCoockie } from "@/lib/cookies";
@@ -21,13 +22,7 @@ export default async function SortTopicsPage() {
 
   console.log(initialTopics);
 
-  type handleNextParams = {
-    excluded: Topic[];
-    included: Topic[];
-    rest: Topic[];
-  };
-
-  async function handleNext(topics: handleNextParams) {
+  async function handleNext(topics: SelectedTopics) {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
     console.log("Resume URL: ", url);

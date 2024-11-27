@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCurrentExecution } from "@/actions/execution";
 import Summary from "./_components/summary";
 import SummarySkeleton from "./_components/summary-skeleton";
@@ -23,7 +24,7 @@ export default async function ConfirmSummaryPage() {
     return redirect(`/`);
   }
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: Summary) => {
     "use server";
     console.log("data", data);
     const url = `${RESUME_URL}/${executionId}`;

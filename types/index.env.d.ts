@@ -140,6 +140,17 @@ type LearningPreference = {
   metadata: string;
 };
 
+type SelectedLearningPreference = {
+  label: string;
+  metadata: string;
+};
+
+type SelectedTopics = {
+  excluded: Topic[];
+  included: Topic[];
+  rest: Topic[];
+};
+
 type Summary = {
   courseTitle: string;
   time: Time;

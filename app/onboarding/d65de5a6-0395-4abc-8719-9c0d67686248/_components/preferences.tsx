@@ -5,11 +5,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { learningPreferences } from "@/lib/prefrencesData";
+import { Loader2 } from "lucide-react";
 
 export default function Preferences({
   handleNext,
 }: {
-  handleNext: (preferences: any) => Promise<any | void>;
+  handleNext: (
+    preferences: SelectedLearningPreference[]
+  ) => Promise<{ error: string } | void>;
 }) {
   const [selectedPreferences, setSelectedPreferences] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,8 +67,11 @@ export default function Preferences({
           </label>
         ))}
       </div>
-      <Button onClick={handleSubmit} disabled={!selectedPreferences.length}>
-        Next
+      <Button
+        onClick={handleSubmit}
+        disabled={!selectedPreferences.length || isLoading}
+      >
+        {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Next"}
       </Button>
     </div>
   );

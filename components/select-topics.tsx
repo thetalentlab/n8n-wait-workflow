@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState } from "react";
 import { ReactSortable } from "react-sortablejs";
-import { GripVertical, ChevronRight, Loader2 } from "lucide-react";
-import { redirect } from "next/navigation";
+import { GripVertical, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
-import { setCoockie } from "@/lib/cookies";
 
 interface ItemType {
   id: number | string;
@@ -63,27 +62,33 @@ const SelectTopics: React.FC<SelectTopicsProps> = ({
           ? updateList(topics, includedTopics, draggingTopic)
           : updateList(topics, excludedTopics, draggingTopic);
       setTopics(filteredSource);
-      targetType === "included"
-        ? setIncludedTopics(updatedTarget)
-        : setExcludedTopics(updatedTarget);
+      if (targetType === "included") {
+        setIncludedTopics(updatedTarget);
+      } else {
+        setExcludedTopics(updatedTarget);
+      }
     } else if (draggingType === "included") {
       const { filteredSource, updatedTarget } =
         targetType === "topics"
           ? updateList(includedTopics, topics, draggingTopic)
           : updateList(includedTopics, excludedTopics, draggingTopic);
       setIncludedTopics(filteredSource);
-      targetType === "topics"
-        ? setTopics(updatedTarget)
-        : setExcludedTopics(updatedTarget);
+      if (targetType === "topics") {
+        setTopics(updatedTarget);
+      } else {
+        setExcludedTopics(updatedTarget);
+      }
     } else if (draggingType === "excluded") {
       const { filteredSource, updatedTarget } =
         targetType === "topics"
           ? updateList(excludedTopics, topics, draggingTopic)
           : updateList(excludedTopics, includedTopics, draggingTopic);
       setExcludedTopics(filteredSource);
-      targetType === "topics"
-        ? setTopics(updatedTarget)
-        : setIncludedTopics(updatedTarget);
+      if (targetType === "topics") {
+        setTopics(updatedTarget);
+      } else {
+        setIncludedTopics(updatedTarget);
+      }
     }
 
     setDraggingTopic(null);

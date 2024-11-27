@@ -7,7 +7,6 @@ import { Suspense } from "react";
 import { redirect, RedirectType } from "next/navigation";
 
 export default async function LearningPreferencesPage() {
-  const resumeUrl = `${RESUME_URL}/${await getCookie("executionId")}`;
   const executionId = await getCookie("executionId");
   const currentExecution = await getCurrentExecution(executionId as string);
   const isExecutionFinished = currentExecution.finished;
@@ -17,7 +16,7 @@ export default async function LearningPreferencesPage() {
     return redirect(`/`);
   }
 
-  const handleNext = async (preferences: string[]) => {
+  const handleNext = async (preferences: SelectedLearningPreference[]) => {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
 

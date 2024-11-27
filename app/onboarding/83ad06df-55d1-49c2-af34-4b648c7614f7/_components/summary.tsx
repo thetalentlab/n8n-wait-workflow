@@ -15,7 +15,7 @@ export default function Summary({
   handleSubmit,
 }: {
   data: Summary;
-  handleSubmit: (data: any) => void;
+  handleSubmit: (data: Summary) => void;
 }) {
   const onSubmit = async () => {
     handleSubmit(data);

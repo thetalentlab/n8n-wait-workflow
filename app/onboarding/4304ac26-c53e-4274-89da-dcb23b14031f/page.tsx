@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCurrentExecution } from "@/actions/execution";
 import SelectQuestions from "./_components/select-questions";
 import { RESUME_URL } from "@/lib/constants";

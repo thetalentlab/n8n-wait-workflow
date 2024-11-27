@@ -1,4 +1,3 @@
-import { getCurrentExecution } from "@/actions/execution";
 import { getWorkflowsByTagName } from "@/actions/workflow";
 import Workflowcards from "@/components/workflow-cards";
 

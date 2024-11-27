@@ -10,11 +10,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  SortableContext,
-  arrayMove,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { arrayMove } from "@dnd-kit/sortable";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Column } from "./column";
@@ -26,55 +22,12 @@ interface Topic {
   content: string;
 }
 
-const mockTopics: Topic[] = [
-  {
-    id: "b1c1a3f8-882f-46f2-b4a7-35e29851fbf8",
-    content: "Introduction to Next.js for Beginners",
-  },
-  {
-    id: "f8d01d3f-9915-4866-8cab-1cf7d73e9318",
-    content: "Building Server-Side Rendered Applications with Next.js",
-  },
-  {
-    id: "3d3c8173-73a6-4d81-b5a5-6595f7550fbc",
-    content: "Static Site Generation in Next.js",
-  },
-  {
-    id: "7e8a511f-e73a-4e1d-bf57-a527d9bf9ebc",
-    content: "Creating and Managing Pages in Next.js",
-  },
-  {
-    id: "0ffb1fa1-f8ef-4fbd-82f4-ca928610d9e7",
-    content: "API Routes and Data Fetching in Next.js",
-  },
-  {
-    id: "4f1aa4c6-3ab6-48cc-af34-9d940ee4c63d",
-    content: "Optimizing Performance in Next.js Applications",
-  },
-  {
-    id: "e9a8a573-655a-4de6-bdb1-b748e34ac289",
-    content: "Next.js Routing and Dynamic Routing",
-  },
-  {
-    id: "9d6972f9-76fc-4185-8d42-8d563752cc70",
-    content: "Integrating CSS and Styling in Next.js",
-  },
-  {
-    id: "d55f2e73-b29c-40e6-8071-9229b257d63d",
-    content: "Deployment Strategies for Next.js Applications",
-  },
-  {
-    id: "40c84c63-0c5e-4f91-bc68-c6b709e19f06",
-    content: "Best Practices and Common Pitfalls in Next.js Development",
-  },
-];
-
 const Topics = ({
   initialTopics,
   handleNext,
 }: {
   initialTopics: Topic[];
-  handleNext: (topics: any) => Promise<void | { error: string }>;
+  handleNext: (topics: SelectedTopics) => Promise<void | { error: string }>;
 }) => {
   const [topics, setTopics] = useState<Topic[]>(initialTopics);
   const [excludedTopics, setExcludedTopics] = useState<Topic[]>([]);
