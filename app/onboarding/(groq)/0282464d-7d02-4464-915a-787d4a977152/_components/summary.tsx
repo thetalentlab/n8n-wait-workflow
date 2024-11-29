@@ -7,15 +7,15 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Edit } from "lucide-react";
 
 export default function Summary({
   data,
   handleSubmit,
 }: {
-  data: Summary;
-  handleSubmit: (data: Summary) => void;
+  data: GroqSummary;
+  handleSubmit: (data: GroqSummary) => void;
 }) {
   const onSubmit = async () => {
     handleSubmit(data);
@@ -138,7 +138,7 @@ export default function Summary({
           <ul className="list-decimal pl-6">
             {data.selectedQuestions.map((question, index) => (
               <li key={index} className="py-2">
-                {question}
+                {question.content}
               </li>
             ))}
           </ul>

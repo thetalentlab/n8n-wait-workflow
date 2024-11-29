@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
-export default function PreferencesCard({ summary }: { summary: Summary }) {
+export default function PreferencesCard({ summary }: { summary: GroqSummary }) {
   return (
     <Card className="w-full mx-auto mt-8 bg-white/50 backdrop-blur-sm border-success/20">
       <CardHeader className="pb-3">

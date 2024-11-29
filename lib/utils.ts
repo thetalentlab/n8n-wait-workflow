@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -13,7 +14,7 @@ export function getHeaders() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function extractData(inputArray: any[]): Summary {
+export function extractData(inputArray: any[]): any {
   return inputArray.reduce((result, item) => {
     return { ...result, ...item };
   }, {} as Summary);

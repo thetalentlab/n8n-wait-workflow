@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
 import { API_BASE_URL, PROD_URL, TEST_URL } from "@/lib/constants";

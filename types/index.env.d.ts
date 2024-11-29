@@ -134,9 +134,9 @@ type Time = {
 };
 
 type LearningPreference = {
-  id: number;
+  id?: number;
   label: string;
-  icon: Record<string, unknown>; // or specific type if you know the structure of the icon
+  icon?: Record<string, unknown>; // or specific type if you know the structure of the icon
   metadata: string;
 };
 
@@ -155,6 +155,19 @@ type Summary = {
   courseTitle: string;
   time: Time;
   selectedQuestions: string[];
+  topics: {
+    excluded: Topic[];
+    included: Topic[];
+    rest: Topic[];
+  };
+  learningGoal: string;
+  learningPreferences: LearningPreference[];
+};
+
+type GroqSummary = {
+  courseTitle: string;
+  time: Time;
+  selectedQuestions: { id: string; content: string }[];
   topics: {
     excluded: Topic[];
     included: Topic[];
