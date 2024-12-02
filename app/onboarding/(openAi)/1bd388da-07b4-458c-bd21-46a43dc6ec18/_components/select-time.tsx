@@ -38,7 +38,7 @@ export default function SelectTime({ handleNext }: selectTimeProps) {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Label>to learning everyday</Label>
+        <Label>to learning every</Label>
         <Select name="frequency">
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select period" />
