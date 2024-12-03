@@ -22,7 +22,7 @@ export default async function SortTopicsPage() {
 
   console.log(initialTopics);
 
-  async function handleNext(topics: SelectedTopics) {
+  async function handleNext(topics: SortedTopics) {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
     console.log("Resume URL: ", url);

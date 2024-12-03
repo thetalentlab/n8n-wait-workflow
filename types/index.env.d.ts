@@ -124,7 +124,7 @@ interface Preference {
 }
 
 type Topic = {
-  id: string;
+  id: number | string;
   content: string;
 };
 
@@ -145,7 +145,7 @@ type SelectedLearningPreference = {
   metadata: string;
 };
 
-type SelectedTopics = {
+type SortedTopics = {
   excluded: Topic[];
   included: Topic[];
   rest: Topic[];

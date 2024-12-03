@@ -4,7 +4,7 @@ import { RESUME_URL } from "@/lib/constants";
 import { getCookie, setCoockie } from "@/lib/cookies";
 import { redirect, RedirectType } from "next/navigation";
 import { Suspense } from "react";
-import Topics from "./_components/topics";
+import SortTopics from "@/app/onboarding/(groq)/84b586ef-db07-491d-a5b3-c08716318305/_components/sort-topics";
 
 export default async function SortTopicsPage() {
   const executionId = await getCookie("executionId");
@@ -22,7 +22,7 @@ export default async function SortTopicsPage() {
 
   console.log(initialTopics);
 
-  async function handleNext(topics: SelectedTopics) {
+  async function handleNext(topics: SortedTopics) {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
     console.log("Resume URL: ", url);
@@ -48,7 +48,9 @@ export default async function SortTopicsPage() {
       redirect(`/onboarding`, RedirectType.replace);
     } else {
       return {
-        error: "Something went wrong",
+        message: "Something went wrong",
+        statusText: res.statusText,
+        status: res.status,
       };
     }
   }
@@ -56,7 +58,7 @@ export default async function SortTopicsPage() {
   return (
     <div className="h-full min-h-screen flex flex-col items-center justify-center px-8 lg:px-4 bg-gradient-to-br from-gray-50 to-gray-100">
       <Suspense fallback={<div>Loading...</div>}>
-        <Topics initialTopics={initialTopics} handleNext={handleNext} />
+        <SortTopics handleNext={handleNext} initialTopics={initialTopics} />
       </Suspense>
     </div>
   );
