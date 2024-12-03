@@ -27,7 +27,7 @@ const Topics = ({
   handleNext,
 }: {
   initialTopics: Topic[];
-  handleNext: (topics: SelectedTopics) => Promise<void | { error: string }>;
+  handleNext: (topics: SortedTopics) => Promise<void | { error: string }>;
 }) => {
   const [topics, setTopics] = useState<Topic[]>(initialTopics);
   const [excludedTopics, setExcludedTopics] = useState<Topic[]>([]);
