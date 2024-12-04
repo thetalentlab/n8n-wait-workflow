@@ -1,6 +1,8 @@
 import { getWorkflowsByTagName } from "@/actions/workflow";
 import Workflowcards from "@/components/workflow-cards";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const workflows = await getWorkflowsByTagName("flashclass");
 

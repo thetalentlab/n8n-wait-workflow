@@ -3,6 +3,8 @@ import { getCurrentWaitNode } from "@/actions/node";
 import { getCookie } from "@/lib/cookies";
 import { redirect } from "next/navigation";
 
+export const revalidate = 0;
+
 export default async function OnboardingPage() {
   const executionId = await getCookie("executionId");
   const currentWaitNode = await getCurrentWaitNode(executionId as string);
