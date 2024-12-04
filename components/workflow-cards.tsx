@@ -113,7 +113,7 @@ export default function WorkflowCards({
         })}
       </RadioGroup>
       <Button type="submit" disabled={!selectedValue || isLoading}>
-        {isLoading ? "executing..." : "Execute Workflow"}
+        {isLoading ? "loading..." : "Begin"}
       </Button>
       {error ? (
         <div className="text-xs bg-red-100 text-red-700 w-full p-3 rounded-md border-red-200 border-2  flex flex-col gap-2">

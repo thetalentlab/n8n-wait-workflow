@@ -194,9 +194,11 @@ const SortTopics = ({ handleNext, initialTopics }: Props) => {
     <div className="flex flex-col px-24 py-14 ">
       <div className="gap-3 text-center">
         <h1 className="text-3xl font-semibold sm:text-3xl md:text-4xl">
-          Sort Topics
+          Which topics do you want to include?
         </h1>
-        <p className="mt-2 text-lg text-muted-foreground">Drag and Drop</p>
+        <p className="mt-2 text-lg text-muted-foreground">
+          Drag and drop proposed topics or add your own
+        </p>
       </div>
       <div className="my-10 grid w-full grid-cols-1 justify-center gap-8 lg:grid-cols-3">
         {/* Excluded Topics */}
@@ -246,7 +248,7 @@ const SortTopics = ({ handleNext, initialTopics }: Props) => {
             onChange={(e) => setTopicInputValue(e.target.value)}
             value={topicInputValue}
             className="mb-6 rounded-lg bg-transparent py-6 text-base focus-visible:outline-none focus-visible:ring-transparent border-black/15"
-            placeholder="Add a topic"
+            placeholder="Add a new topic end hit Enter"
             onKeyDown={(e) => addFromInput(e)}
           />
           <div

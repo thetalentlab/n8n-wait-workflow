@@ -33,7 +33,7 @@ export default function SelectQuestions({
           </Label>
         </div>
       ))}
-      <FormStatusButton>Next</FormStatusButton>
+      <FormStatusButton className="mt-10">Next</FormStatusButton>
     </form>
   );
 }

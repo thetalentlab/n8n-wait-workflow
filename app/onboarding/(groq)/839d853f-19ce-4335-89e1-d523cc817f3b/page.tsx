@@ -44,10 +44,14 @@ export default async function SelectQuestionsPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="flex flex-col w-full h-full min-h-screen gap-8 items-center justify-center">
-        <h1 className="text-4xl font-semibold max-w-2xl">
-          What questions do you want to be able to answer by the end of the
-          course?
-        </h1>
+        <div className="gap-3 text-center">
+          <h1 className="text-3xl font-semibold sm:text-3xl md:text-4xl">
+            Which questions should be answered?
+          </h1>
+          <p className="mt-2 text-lg text-muted-foreground">
+            These questions will help refine the course structure.
+          </p>
+        </div>
         <SelectQuestions questions={allQuestions} handleNext={handleNext} />
       </div>
     </Suspense>

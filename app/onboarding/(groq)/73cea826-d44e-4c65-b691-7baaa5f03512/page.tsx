@@ -45,7 +45,7 @@ export default async function LearningGoalPage() {
   };
 
   return (
-    <div className="h-full min-h-screen flex flex-col gap-4 items-center justify-center px-8 lg:px-4">
+    <div className="h-full min-h-screen flex flex-col gap-4 items-center justify-center p-8 lg:p-4">
       <Suspense fallback={<p>loading...</p>}>
         <h1 className="text-4xl font-semibold">What do you want to learn?</h1>
         <LearningGoal handleNext={handleNext} />

@@ -28,7 +28,6 @@ export default function SelectTime({ handleNext }: selectTimeProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Duration</SelectLabel>
               <SelectItem value="10-15 minutes">10 to 15 minutes</SelectItem>
               <SelectItem value="20-30 minutes">20 to 30 minutes</SelectItem>
               <SelectItem value="1 hour">1 hour</SelectItem>
@@ -45,10 +44,9 @@ export default function SelectTime({ handleNext }: selectTimeProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>frequency</SelectLabel>
-              <SelectItem value="day">Day</SelectItem>
-              <SelectItem value="week">Week</SelectItem>
-              <SelectItem value="month">Month</SelectItem>
+              <SelectItem value="day">day</SelectItem>
+              <SelectItem value="week">week</SelectItem>
+              <SelectItem value="month">month</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

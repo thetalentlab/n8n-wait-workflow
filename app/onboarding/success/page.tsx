@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { getCookie } from "@/lib/cookies";
 import SuccessCheckmark from "./_components/success-checkmark";
 import PreferencesCard from "./_components/preferences-card";
+import Link from "next/link";
 
 export default async function SuccessPage() {
   const confirmedSummary = await getCookie("confirmedSummary");
@@ -19,19 +20,18 @@ export default async function SuccessPage() {
 
           <div className="space-y-4 [&>*]:animate-fade-up [&>*]:opacity-0 [&>*]:delay-500">
             <h1 className="text-4xl font-semibold text-gray-900">
-              Onboarding proccess Complete!
+              Onboarding Complete!
             </h1>
-            <p className="text-lg text-gray-600 max-w-md mx-auto">
+            {/* <p className="text-lg text-gray-600 max-w-md mx-auto">
               Your transformation has been successfully created. You&apos;re all
               set to start your journey.
-            </p>
+            </p> */}
           </div>
-          <PreferencesCard summary={parsedSummary} />
+          {/* <PreferencesCard summary={parsedSummary} /> */}
           <div className="flex flex-col gap-4 items-center [&>*]:animate-fade-up [&>*]:opacity-0 [&>*]:delay-700">
-            <Button className="bg-success hover:bg-success-dark text-white transition-all duration-300 ease-out hover:scale-105">
-              Go to Dashboard
+            <Button asChild>
+              <Link href="/">Create Another Course</Link>
             </Button>
-            <Button>Return Home</Button>
           </div>
         </div>
       </div>

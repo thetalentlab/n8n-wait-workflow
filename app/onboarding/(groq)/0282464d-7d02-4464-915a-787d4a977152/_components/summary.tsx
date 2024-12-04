@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Edit } from "lucide-react";
+// import { Edit } from "lucide-react";
 
 export default function Summary({
   data,
@@ -25,7 +25,7 @@ export default function Summary({
       {/* Title */}
       <Card className="border shadow-lg col-span-4">
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
+          {/* <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
               <p>Course title</p>
               <Button variant="secondary" size="icon">
@@ -36,7 +36,7 @@ export default function Summary({
           <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <h2 className="text-2xl font-semibold">{data.courseTitle}</h2>
@@ -48,16 +48,16 @@ export default function Summary({
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
-              <p>Learning Preferences</p>
-              <Button variant="secondary" size="icon">
+              <p>Preferences</p>
+              {/* <Button variant="secondary" size="icon">
                 <Edit className="text-secondary-foreground" />
-              </Button>
+              </Button> */}
             </div>
           </CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <ul className="flex gap-2 flex-wrap">
@@ -75,16 +75,16 @@ export default function Summary({
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
-              <p>I want to learn</p>
-              <Button variant="secondary" size="icon">
+              <p>Goal</p>
+              {/* <Button variant="secondary" size="icon">
                 <Edit className="text-secondary-foreground" />
-              </Button>
+              </Button> */}
             </div>
           </CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <p>{data.learningGoal}</p>
@@ -97,24 +97,41 @@ export default function Summary({
           <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
               <p>Topics</p>
-              <Button variant="secondary" size="icon">
+              {/* <Button variant="secondary" size="icon">
                 <Edit className="text-secondary-foreground" />
-              </Button>
+              </Button> */}
             </div>
           </CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
-          <ul className="list-disc pl-6">
-            {data.topics.included.map((topic) => (
-              <li key={topic.id} className="py-2">
-                {topic.content}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <Badge variant="outline">Included</Badge>
+            <ul className="list-disc pl-6">
+              {data.topics.included.map((topic) => (
+                <li key={topic.id} className="py-2">
+                  {topic.content}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            {data.topics.excluded.length !== 0 && (
+              <>
+                <Badge variant="outline">Excluded</Badge>
+                <ul className="list-disc pl-6">
+                  {data.topics.excluded.map((topic) => (
+                    <li key={topic.id} className="py-2">
+                      {topic.content}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
         </CardContent>
       </Card>
 
@@ -123,16 +140,16 @@ export default function Summary({
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
-              <p>Selected Questions</p>
-              <Button variant="secondary" size="icon">
+              <p>Questions</p>
+              {/* <Button variant="secondary" size="icon">
                 <Edit className="text-secondary-foreground" />
-              </Button>
+              </Button> */}
             </div>
           </CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <ul className="list-decimal pl-6">
@@ -150,26 +167,26 @@ export default function Summary({
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
             <div className="flex items-center justify-between">
-              <p>Time Commitment</p>
-              <Button variant="secondary" size="icon">
+              <p>Timing</p>
+              {/* <Button variant="secondary" size="icon">
                 <Edit className="text-secondary-foreground" />
-              </Button>
+              </Button> */}
             </div>
           </CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             laborum.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <p>
-            I want to learn for <strong>{data.time.duration}</strong> a{" "}
+            I want to learn for <strong>{data.time.duration}</strong> every{" "}
             <strong>{data.time.frequency}</strong>
           </p>
         </CardContent>
       </Card>
       <Button onClick={onSubmit} className="col-start-4">
-        Submit
+        Confirm
       </Button>
     </div>
   );
