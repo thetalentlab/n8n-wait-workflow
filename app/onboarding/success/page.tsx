@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getCookie } from "@/lib/cookies";
 import SuccessCheckmark from "./_components/success-checkmark";
-import PreferencesCard from "./_components/preferences-card";
+// import PreferencesCard from "./_components/preferences-card";
 import Link from "next/link";
 
 export default async function SuccessPage() {

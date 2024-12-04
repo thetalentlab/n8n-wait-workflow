@@ -2,13 +2,6 @@ import FormStatusButton from "@/components/loading-button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 
-const examples = [
-  "I want to learn SQL to analyze campaign performance data and make data-driven decisions to improve ROI.",
-  "I am a computer science student who wants to strengthen my understanding of algorithms and data structures to prepare for technical interviews.",
-  "I am senior software engineer in JavaScript and want to learn new programming language python.",
-  "I am a technical recruiter and want to learn how to learn basic of programming languages starting off with Python.",
-];
-
 const learningGoals = [
   {
     role: "Data Analyst",
@@ -64,11 +57,12 @@ export default async function LearningGoal({
             .sort(() => Math.random() - 0.5)
             .slice(0, 3)
             .map((example) => (
-              <div className="flex flex-col gap-2 items-start p-4 border rounded-md">
+              <div
+                key={example.role}
+                className="flex flex-col gap-2 items-start p-4 border rounded-md"
+              >
                 <Badge variant="outline">{example.role}</Badge>
-                <p key={example.role} className="text-xs pl-3">
-                  {example.goal}
-                </p>
+                <p className="text-xs pl-3">{example.goal}</p>
               </div>
             ))}
         </div>

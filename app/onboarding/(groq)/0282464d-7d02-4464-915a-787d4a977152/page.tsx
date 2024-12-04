@@ -21,9 +21,9 @@ export default async function ConfirmSummaryPage() {
   console.dir(summaryData, { depth: null });
   // console.log(summaryData);
 
-  // if (isExecutionFinished || executionStatus === "canceled") {
-  //   return redirect(`/`);
-  // }
+  if (isExecutionFinished || executionStatus === "canceled") {
+    return redirect(`/`);
+  }
 
   const handleSubmit = async (data: GroqSummary) => {
     "use server";
