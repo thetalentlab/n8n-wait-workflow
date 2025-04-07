@@ -45,10 +45,6 @@ export default async function ConfirmSummaryPage() {
   return (
     <Suspense fallback={<SummarySkeleton />}>
       <div className="min-h-screen h-full flex flex-col gap-4 items-center justify-center p-8 lg:p-4">
-        <h1 className="text-4xl font-semibold mt-4">
-          Your transformation details
-        </h1>
-        <p>A quick overview of your transformation details and preferences.</p>
         <Summary data={summaryData} handleSubmit={handleSubmit} />
       </div>
     </Suspense>

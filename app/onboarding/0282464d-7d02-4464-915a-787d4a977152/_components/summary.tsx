@@ -8,7 +8,46 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "../../../../components/ui/button";
-import { Edit } from "lucide-react";
+import { Edit, Check, ArrowRight } from "lucide-react";
+
+// Neo-brutalist style wrapper component
+function NeoBrutalistCard({
+  className,
+  title,
+  children,
+  color = "#ffe01b", // Default yellow color
+  rotation = 0
+}: {
+  className?: string;
+  title: string;
+  children: React.ReactNode;
+  color?: string;
+  rotation?: number;
+}) {
+  return (
+    <div
+      className={`relative ${className}`}
+      style={{ transform: `rotate(${rotation}deg)` }}
+    >
+      <div
+        className="absolute inset-0 rounded-lg border-2 border-black"
+        style={{
+          backgroundColor: color,
+          transform: "translate(8px, 8px)",
+          zIndex: -1
+        }}
+      />
+      <div className="bg-white border-2 border-black rounded-lg shadow-lg overflow-hidden">
+        <div className="px-4 py-3 bg-gray-800 text-white font-thin flex justify-between items-center">
+          <h3 className="text-md uppercase tracking-tight">{title}</h3>
+        </div>
+        <div className="p-6">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Summary({
   data,
@@ -23,157 +62,105 @@ export default function Summary({
       handleSubmit(data);
     }, 0);
   };
+
+  // Define a color palette for neo-brutalist style
+  const colors = {
+    yellow: "#ffe01b",
+    blue: "#87CEEB",
+    pink: "#ff90e8",
+    green: "#A7F0BA",
+    orange: "#FF8C42"
+  };
+
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
-      {/* Title */}
-      <Card className="border shadow-lg col-span-4">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>Course title</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <h2 className="text-2xl font-semibold">{data.courseTitle}</h2>
-        </CardContent>
-      </Card>
+    <div className="relative py-8 px-4">
+      <h1 className="text-5xl font-black mb-8 text-center tracking-tight">YOUR TRANSFORMATION DETAILS</h1>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        {/* Title */}
+        <NeoBrutalistCard
+          title="COURSE TITLE"
+          className="col-span-1 md:col-span-2"
+          color={colors.yellow}
+        >
+          <h1 className="text-3xl font-black">{data.courseTitle}</h1>
+        </NeoBrutalistCard>
 
-      {/* Learning Preferences */}
-      <Card className="border shadow-lg col-span-4 lg:col-span-2">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>Learning Preferences</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul className="flex gap-2 flex-wrap">
+        {/* Learning Preferences */}
+        <NeoBrutalistCard
+          title="LEARNING PREFERENCES"
+          color={colors.pink}
+        >
+          <div className="flex flex-wrap gap-3">
             {Array.isArray(data.learningPreferences) && data.learningPreferences.map((preference, index) => (
-              <li key={index} className="flex items-center">
-                <Badge variant="secondary">{typeof preference === 'string' ? preference : preference.label} </Badge>
+              <span
+                key={index}
+                className="inline-block bg-gray-500 text-white px-4 py-2 rounded-full font-bold text-lg"
+              >
+                {typeof preference === 'string' ? preference : preference.label}
+              </span>
+            ))}
+          </div>
+        </NeoBrutalistCard>
+
+        {/* Learning Goal */}
+        <NeoBrutalistCard
+          title="I WANT TO LEARN"
+          color={colors.blue}
+
+        >
+          <p className="text-2xl font-bold">{data.learningGoal}</p>
+        </NeoBrutalistCard>
+
+        {/* Selected Topics */}
+        <NeoBrutalistCard
+          title="TOPICS"
+          color={colors.green}
+
+        >
+          <ul className="space-y-3">
+            {data.topics && data.topics.included && data.topics.included.map((topic, idx) => (
+              <li key={idx} className="flex items-start gap-3">
+                <span className="inline-block bg-gray-500 text-white text-lg rounded w-7 h-7 flex items-center justify-center font-bold shrink-0">{idx + 1}</span>
+                <span className="font-thin text-lg ">
+                  { topic }
+                </span>
               </li>
             ))}
           </ul>
-        </CardContent>
-      </Card>
+        </NeoBrutalistCard>
 
-      {/* Learning Goal */}
-      <Card className="border shadow-lg col-span-4 lg:col-span-2">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>I want to learn</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>{data.learningGoal}</p>
-        </CardContent>
-      </Card>
+        {/* Selected Questions */}
+        <NeoBrutalistCard
+          title="QUESTIONS"
+          color={colors.orange}
 
-      {/* Selected Topics */}
-      <Card className="border shadow-lg lg:col-span-2 col-span-4">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>Topics</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul className="list-disc pl-6">
-            {data.topics.included.map((topic) => (
-              <li key={topic.id} className="py-2">
-                {topic.content}
+        >
+          <ul className="space-y-4">
+            {data.selectedQuestions && data.selectedQuestions.map((question, idx ) => (
+              <li key={idx} className="border-b-2 border-black pb-2 last:border-b-0">
+                <div className="flex items-start gap-3">
+                  <span className="inline-block bg-gray-500 text-white text-lg rounded w-7 h-7 flex items-center justify-center font-bold shrink-0">{idx + 1}</span>
+                  <span className="font-medium ">{question}</span>
+                </div>
               </li>
             ))}
           </ul>
-        </CardContent>
-      </Card>
+        </NeoBrutalistCard>
 
-      {/* Selected Questions */}
-      <Card className="border shadow-lg lg:col-span-2 col-span-4">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>Selected Questions</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul className="list-decimal pl-6">
-            {data.selectedQuestions.map((question, index) => (
-              <li key={index} className="py-2">
-                {question}
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+        {/* Time */}
+        <NeoBrutalistCard
+          title="TIME COMMITMENT"
+          className="col-span-1 md:col-span-2"
+          color={colors.yellow}
 
-      {/* Time */}
-      <Card className="border shadow-lg col-span-4">
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            <div className="flex items-center justify-between">
-              <p>Time Commitment</p>
-              <Button variant="secondary" size="icon">
-                <Edit className="text-secondary-foreground" />
-              </Button>
-            </div>
-          </CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
-            laborum.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>
-            I want to learn for <strong>{data.time.duration}</strong> a{" "}
-            <strong>{data.time.frequency}</strong>
-          </p>
-        </CardContent>
-      </Card>
-      <Button onClick={onSubmit} className="col-start-4">
-        Submit
-      </Button>
+        >
+          <div className="text-center">
+            <p className="text-3xl font-black">
+              {data.time}
+            </p>
+          </div>
+        </NeoBrutalistCard>
+      </div>
     </div>
   );
 }

@@ -38,8 +38,8 @@ export async function getWorkflowName(id: string) {
 }
 
 export default async function exectuteWorkflow(webhookTriggerId: string) {
-  // const res = await fetch(`${PROD_URL}/${webhookTriggerId}`);
-  const res = await fetch(`${TEST_URL}/${webhookTriggerId}`); // For testing
+  const res = await fetch(`${PROD_URL}/${webhookTriggerId}`);
+  // const res = await fetch(`${TEST_URL}/${webhookTriggerId}`); // For testing
   const data = await res.json();
   return data;
 }

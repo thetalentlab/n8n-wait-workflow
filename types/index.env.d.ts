@@ -123,15 +123,9 @@ interface Preference {
   metadata: string;
 }
 
-type Topic = {
-  id: string;
-  content: string;
-};
+type Topic = string;
 
-type Time = {
-  duration: string;
-  frequency: string;
-};
+type Time = string;
 
 type LearningPreference = {
   id: number;
