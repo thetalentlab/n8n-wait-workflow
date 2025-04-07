@@ -13,8 +13,19 @@ export function getHeaders() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function extractData(inputArray: any[]): Summary {
-  return inputArray.reduce((result, item) => {
-    return { ...result, ...item };
-  }, {} as Summary);
+export function extractData(input: any): Summary {
+  // If the input is already an object (not an array), return it directly
+  if (input && typeof input === 'object' && !Array.isArray(input)) {
+    return input as Summary;
+  }
+  
+  // If it's an array, reduce it as before
+  if (Array.isArray(input)) {
+    return input.reduce((result, item) => {
+      return { ...result, ...item };
+    }, {} as Summary);
+  }
+  
+  // Default case: return empty object
+  return {} as Summary;
 }

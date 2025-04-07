@@ -3,7 +3,7 @@ import { getCurrentExecution } from "@/actions/execution";
 import Summary from "./_components/summary";
 import SummarySkeleton from "./_components/summary-skeleton";
 import { RESUME_URL } from "@/lib/constants";
-import { getCookie, setCoockie } from "@/lib/cookies";
+import { getCookie, setCookie } from "@/lib/cookies";
 import { extractData } from "@/lib/utils";
 import { redirect, RedirectType } from "next/navigation";
 import { Suspense } from "react";
@@ -16,8 +16,8 @@ export default async function ConfirmSummaryPage() {
 
   const summary = await getCookie("summary");
   const parsedSummary = summary ? JSON.parse(summary as any) : {};
-  const summaryData: Summary = extractData(parsedSummary);
   console.log({ parsedSummary });
+  const summaryData: Summary = extractData(parsedSummary);
   console.log(summaryData);
 
   if (isExecutionFinished || executionStatus === "canceled") {
@@ -38,7 +38,7 @@ export default async function ConfirmSummaryPage() {
     console.log("res", res);
     const responseData = await res.json();
     console.log("data", responseData);
-    await setCoockie("confirmedSummary", JSON.stringify(responseData));
+    await setCookie("confirmedSummary", JSON.stringify(responseData));
     redirect(`/onboarding`, RedirectType.replace);
   };
 

@@ -1,6 +1,6 @@
 import { getCurrentExecution } from "@/actions/execution";
 import { RESUME_URL } from "@/lib/constants";
-import { getCookie, setCoockie } from "@/lib/cookies";
+import { getCookie, setCookie } from "@/lib/cookies";
 import SelectTime from "./_components/select-time";
 import { redirect, RedirectType } from "next/navigation";
 import { Suspense } from "react";
@@ -21,6 +21,9 @@ export default async function SelectTimePage() {
     console.log("sending selected time...");
     const res = await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         time: {
           duration: formData.get("duration"),
@@ -33,7 +36,7 @@ export default async function SelectTimePage() {
 
     const summary = await res.json();
     console.log("summary", summary);
-    await setCoockie("summary", JSON.stringify(summary));
+    await setCookie("summary", JSON.stringify(summary));
     console.log("redirecting...");
     redirect(`/onboarding`, RedirectType.replace);
   }

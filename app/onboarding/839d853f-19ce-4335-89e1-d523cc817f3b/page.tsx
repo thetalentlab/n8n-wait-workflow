@@ -28,6 +28,9 @@ export default async function SelectQuestionsPage() {
     console.log("selectedQuestions", selectedQuestions);
     await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ selectedQuestions }),
       mode: "no-cors",
       cache: "no-store",

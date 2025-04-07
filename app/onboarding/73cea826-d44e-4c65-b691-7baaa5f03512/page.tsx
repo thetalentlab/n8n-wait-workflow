@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import LearningGoal from "./_components/learning-goal";
-import { getCookie, setCoockie } from "@/lib/cookies";
+import { getCookie, setCookie } from "@/lib/cookies";
 import { getCurrentExecution } from "@/actions/execution";
 import { RESUME_URL } from "@/lib/constants";
 import { redirect, RedirectType } from "next/navigation";
@@ -26,15 +26,24 @@ export default async function LearningGoalPage() {
       return;
     console.log("Learning Goal: ", learningGoal);
     const url = `${RESUME_URL}/${executionId}`;
+    // const res = await fetch(url, {
+    //   mode: "no-cors",
+    //   method: "POST",
+    //   body: JSON.stringify({ learningGoal }),
+    // });
     const res = await fetch(url, {
       mode: "no-cors",
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ learningGoal }),
+      cache: "no-store",
     });
     console.log("res", res);
     const suggestedTopics = await res.json();
     console.log("suggestedTopics", suggestedTopics);
-    await setCoockie("suggestedTopics", JSON.stringify(suggestedTopics));
+    await setCookie("suggestedTopics", JSON.stringify(suggestedTopics));
 
     console.log("redirecting...");
 

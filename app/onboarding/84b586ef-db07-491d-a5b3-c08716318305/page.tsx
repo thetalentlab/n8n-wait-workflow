@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCurrentExecution } from "@/actions/execution";
 import { RESUME_URL } from "@/lib/constants";
-import { getCookie, setCoockie } from "@/lib/cookies";
+import { getCookie, setCookie } from "@/lib/cookies";
 import { redirect, RedirectType } from "next/navigation";
 import { Suspense } from "react";
 import Topics from "./_components/topics";
@@ -29,6 +29,9 @@ export default async function SortTopicsPage() {
     console.log("selected:", topics);
     const res = await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ topics }),
       mode: "no-cors",
       cache: "no-store",
@@ -37,7 +40,7 @@ export default async function SortTopicsPage() {
     if (res.ok) {
       const suggestedQuestions = await res.json();
       console.log("suggestedQuestions", suggestedQuestions);
-      await setCoockie(
+      await setCookie(
         "suggestedQuestions",
         JSON.stringify(suggestedQuestions)
       );

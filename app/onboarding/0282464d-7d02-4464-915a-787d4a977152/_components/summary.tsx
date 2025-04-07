@@ -17,8 +17,11 @@ export default function Summary({
   data: Summary;
   handleSubmit: (data: Summary) => void;
 }) {
-  const onSubmit = async () => {
-    handleSubmit(data);
+  const onSubmit = () => {
+    // Use a timeout to avoid state updates during render
+    setTimeout(() => {
+      handleSubmit(data);
+    }, 0);
   };
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
@@ -61,9 +64,9 @@ export default function Summary({
         </CardHeader>
         <CardContent>
           <ul className="flex gap-2 flex-wrap">
-            {data.learningPreferences.map((preference) => (
-              <li key={preference.label} className="flex items-center">
-                <Badge variant="secondary">{preference.label} </Badge>
+            {Array.isArray(data.learningPreferences) && data.learningPreferences.map((preference, index) => (
+              <li key={index} className="flex items-center">
+                <Badge variant="secondary">{typeof preference === 'string' ? preference : preference.label} </Badge>
               </li>
             ))}
           </ul>

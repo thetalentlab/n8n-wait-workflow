@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import exectuteWorkflow from "@/actions/execution";
-import { setCoockie } from "@/lib/cookies";
+import { setCookie } from "@/lib/cookies";
 import { redirect } from "next/navigation";
 
 export default function WorkflowCards({
@@ -48,7 +48,7 @@ export default function WorkflowCards({
         setIsSuccess(true);
         console.log("Starting execution with id:", executionId);
         // Set the executionId as a cookie
-        await setCoockie("executionId", executionId);
+        await setCookie("executionId", executionId);
         // const currentWaitNode = await getCurrentWaitNode(executionId as string);
         setError(null);
         setIsLoading(false);
