@@ -29,7 +29,7 @@ export default function Preferences({
     const selectedItems = learningPreferences.filter((item) =>
       selectedPreferences.includes(item.id)
     );
-    console.log("Selected Items:", selectedItems);
+
     const preferences = selectedItems.map((item) => ({
       label: item.label,
       metadata: item.metadata,

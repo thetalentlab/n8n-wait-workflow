@@ -32,7 +32,7 @@ export async function getWorkflowName(id: string) {
     const metadata = await res.json();
     return metadata.workflowData.name;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return error;
   }
 }

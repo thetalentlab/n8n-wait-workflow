@@ -20,8 +20,6 @@ export default async function LearningPreferencesPage() {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
 
-    console.log(preferences);
-
     const res = await fetch(url, {
       method: "POST",
       mode: "no-cors",
@@ -33,7 +31,6 @@ export default async function LearningPreferencesPage() {
     });
 
     if (res.ok) {
-      console.log("redirecting...");
       redirect(`/onboarding`, RedirectType.replace);
     } else {
       return {

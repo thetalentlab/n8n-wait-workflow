@@ -16,9 +16,7 @@ export default async function ConfirmSummaryPage() {
 
   const summary = await getCookie("summary");
   const parsedSummary = summary ? JSON.parse(summary as any) : {};
-  console.log({ parsedSummary });
   const summaryData: Summary = extractData(parsedSummary);
-  console.log(summaryData);
 
   if (isExecutionFinished || executionStatus === "canceled") {
     return redirect(`/`);
@@ -26,18 +24,14 @@ export default async function ConfirmSummaryPage() {
 
   const handleSubmit = async (data: Summary) => {
     "use server";
-    console.log("data", data);
     const url = `${RESUME_URL}/${executionId}`;
-    console.log("Resume URL: ", url);
     const res = await fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
       mode: "no-cors",
       cache: "no-store",
     });
-    console.log("res", res);
     const responseData = await res.json();
-    console.log("data", responseData);
     await setCookie("confirmedSummary", JSON.stringify(responseData));
     redirect(`/onboarding`, RedirectType.replace);
   };

@@ -18,7 +18,7 @@ export default async function SelectTimePage() {
   async function handleNext(formData: FormData) {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
-    console.log("sending selected time...");
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -35,9 +35,7 @@ export default async function SelectTimePage() {
     });
 
     const summary = await res.json();
-    console.log("summary", summary);
     await setCookie("summary", JSON.stringify(summary));
-    console.log("redirecting...");
     redirect(`/onboarding`, RedirectType.replace);
   }
 

@@ -32,7 +32,7 @@ async function selectWorkflow(workflows: Workflow[]) {
     const selectedWorkflow = workflows.find(
       (workflow) => workflow.name === name.split(" - ")[0]
     );
-    console.log("workflow id:", selectedWorkflow?.id);
+
     if (!selectedWorkflow?.active) {
       const yesNo = await inquirer.prompt([
         {
@@ -48,7 +48,7 @@ async function selectWorkflow(workflows: Workflow[]) {
           { headers, method: "POST" }
         );
         const workflow = await res.json();
-        console.log("workflow activated", workflow);
+
         return workflow;
       }
     }
@@ -56,11 +56,10 @@ async function selectWorkflow(workflows: Workflow[]) {
       const selectedWorkflow = workflows.find(
         (workflow) => workflow.name === name.split(" - ")[0]
       );
-      console.log("selectedWorkflow", selectedWorkflow);
       return selectedWorkflow;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -108,19 +107,17 @@ async function generatePages(waitNodes: Node[]) {
         }`
       );
     }
-    console.log("✅ Page generated:", filePath);
   });
 }
 
 async function main() {
   const workflows = await getAllWorkflows();
-  console.log(workflows);
   const selectedWorkflow = await selectWorkflow(workflows);
   const waitNodes = selectedWorkflow?.nodes.filter(
     (node: Node) => node.type === "n8n-nodes-base.wait"
   );
   if (!waitNodes?.length) {
-    console.log("No wait nodes found");
+    console.error("No wait nodes found");
     return;
   } else {
     generatePages(waitNodes);

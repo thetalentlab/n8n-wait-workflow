@@ -7,43 +7,43 @@ import { API_BASE_URL } from "./lib/constants";
 import { getHeaders } from "./lib/utils";
 
 export async function debugAPI() {
-  console.log("API_BASE_URL:", API_BASE_URL);
-  console.log("Headers:", {
+  console.debug("API_BASE_URL:", API_BASE_URL);
+  console.debug("Headers:", {
     "X-N8N-API-KEY": process.env.X_N8N_API_KEY ? "Set (masked)" : "Not set",
   });
   
   try {
     // Try to fetch workflows
     const tagName = "flashclass";
-    console.log(`Fetching workflows with tag: ${tagName}`);
+    console.debug(`Fetching workflows with tag: ${tagName}`);
     
     // Test direct fetch first
     const headers = getHeaders();
-    console.log(`Making direct fetch to: ${API_BASE_URL}/workflows?tags=${tagName}`);
+    console.debug(`Making direct fetch to: ${API_BASE_URL}/workflows?tags=${tagName}`);
     const directRes = await fetch(`${API_BASE_URL}/workflows?tags=${tagName}`, {
       headers,
     });
     
-    console.log("Response status:", directRes.status);
-    console.log("Response headers:", Object.fromEntries([...directRes.headers.entries()]));
+    console.debug("Response status:", directRes.status);
+    console.debug("Response headers:", Object.fromEntries([...directRes.headers.entries()]));
     
     const responseText = await directRes.text();
-    console.log("Raw response text:", responseText);
+    console.debug("Raw response text:", responseText);
     
     let responseData;
     try {
       responseData = JSON.parse(responseText);
-      console.log("Parsed response data:", responseData);
+      console.debug("Parsed response data:", responseData);
     } catch (parseError) {
       console.error("Error parsing JSON:", parseError);
     }
     
     // Now try the actual function
-    console.log("Trying getWorkflowsByTagName function...");
+    console.debug("Trying getWorkflowsByTagName function...");
     const workflows = await getWorkflowsByTagName(tagName);
-    console.log("Workflows returned:", workflows);
-    console.log("Workflows is array:", Array.isArray(workflows));
-    console.log("Workflows length:", workflows ? workflows.length : "N/A");
+    console.debug("Workflows returned:", workflows);
+    console.debug("Workflows is array:", Array.isArray(workflows));
+    console.debug("Workflows length:", workflows ? workflows.length : "N/A");
     
     return {
       success: true,

@@ -24,7 +24,7 @@ export default async function LearningGoalPage() {
       executionStatus === "canceled"
     )
       return;
-    console.log("Learning Goal: ", learningGoal);
+
     const url = `${RESUME_URL}/${executionId}`;
     // const res = await fetch(url, {
     //   mode: "no-cors",
@@ -40,12 +40,10 @@ export default async function LearningGoalPage() {
       body: JSON.stringify({ learningGoal }),
       cache: "no-store",
     });
-    console.log("res", res);
-    const suggestedTopics = await res.json();
-    console.log("suggestedTopics", suggestedTopics);
-    await setCookie("suggestedTopics", JSON.stringify(suggestedTopics));
 
-    console.log("redirecting...");
+    const suggestedTopics = await res.json();
+
+    await setCookie("suggestedTopics", JSON.stringify(suggestedTopics));
 
     redirect(`/onboarding`, RedirectType.replace);
   };

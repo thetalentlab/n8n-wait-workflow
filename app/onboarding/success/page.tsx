@@ -7,7 +7,6 @@ export default async function SuccessPage() {
   const confirmedSummary = await getCookie("confirmedSummary");
   const parsedSummary = confirmedSummary ? JSON.parse(confirmedSummary) : {};
 
-  console.log("sucess page", parsedSummary);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-success-light to-white">
       <div className="w-full max-w-2xl px-6 py-12 text-center">

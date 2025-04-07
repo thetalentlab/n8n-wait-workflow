@@ -46,7 +46,7 @@ export default function WorkflowCards({
         const executionId = data.id;
         if (!executionId) return;
         setIsSuccess(true);
-        console.log("Starting execution with id:", executionId);
+
         // Set the executionId as a cookie
         await setCookie("executionId", executionId);
         // const currentWaitNode = await getCurrentWaitNode(executionId as string);

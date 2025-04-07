@@ -23,9 +23,9 @@ export default async function SelectQuestionsPage() {
   const handleNext = async (formData: FormData) => {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
-    console.log("Resume URL: ", url);
+
     const selectedQuestions = formData.getAll("question");
-    console.log("selectedQuestions", selectedQuestions);
+
     await fetch(url, {
       method: "POST",
       headers: {
@@ -35,7 +35,7 @@ export default async function SelectQuestionsPage() {
       mode: "no-cors",
       cache: "no-store",
     });
-    console.log("redirecting...");
+
     redirect(`/onboarding`, RedirectType.replace);
   };
   return (

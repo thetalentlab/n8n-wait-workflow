@@ -20,13 +20,10 @@ export default async function SortTopicsPage() {
     redirect(`/`);
   }
 
-  console.log(initialTopics);
-
   async function handleNext(topics: SelectedTopics) {
     "use server";
     const url = `${RESUME_URL}/${executionId}`;
-    console.log("Resume URL: ", url);
-    console.log("selected:", topics);
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -36,15 +33,13 @@ export default async function SortTopicsPage() {
       mode: "no-cors",
       cache: "no-store",
     });
-    console.log("res", res);
+
     if (res.ok) {
       const suggestedQuestions = await res.json();
-      console.log("suggestedQuestions", suggestedQuestions);
       await setCookie(
         "suggestedQuestions",
         JSON.stringify(suggestedQuestions)
       );
-      console.log("redirecting...");
       redirect(`/onboarding`, RedirectType.replace);
     } else {
       return {

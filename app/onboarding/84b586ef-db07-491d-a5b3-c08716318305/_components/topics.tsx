@@ -44,7 +44,7 @@ const Topics = ({
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    console.log(over);
+
     if (!over) return;
 
     const activeId = active.id;
@@ -110,7 +110,7 @@ const Topics = ({
       rest: topics,
     });
     if (res?.error) {
-      console.log(res.error);
+      console.error(res.error);
       return;
     }
     setIsLoading(false);
