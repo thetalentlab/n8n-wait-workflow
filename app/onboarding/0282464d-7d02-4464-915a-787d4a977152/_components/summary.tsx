@@ -74,7 +74,6 @@ export default function Summary({
 
   return (
     <div className="relative py-8 px-4">
-      <h1 className="text-5xl font-black mb-8 text-center tracking-tight">YOUR TRANSFORMATION DETAILS</h1>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
         {/* Title */}
         <NeoBrutalistCard
